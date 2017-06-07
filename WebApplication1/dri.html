@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="zh" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS入门学习</title>
+    <script src="scripts/angular.min.js"></script>
+</head>
+<body>
+    <div ng-controller='MainController'>
+        父亲:{{name}}<input ng-model="name" />
+        <div name1="ddd" my-directive></div>
+    </div>
+</body>
+<script type="text/javascript">
+
+var app = angular.module('myApp', []);
+app.controller('MainController', function ($scope) {
+    $scope.name = '林炳文';
+  
+});
+app.directive('myDirective', function () {
+   
+            return {
+                restrict: 'EA',
+                scope: {name1:'&'},
+                template: '<div>儿子:{{ name1 }}<input name="a" ng-model="name1" ng-click="aa()"/></div>',
+                controller: function ($scope, $element) {
+                    //alert($scope.name);
+                    alert($scope.name1({ name: 1 }));
+                  
+                },
+                link: function ($scope, el, attr) {
+                    $scope.aa = function () {
+                        alert(1);
+                    }
+                }
+            };
+});
+</script>
+
+
+
+</html> 

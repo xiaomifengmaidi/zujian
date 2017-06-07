@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <style>
+        .Atable {
+            border:solid 2px #add9c0;
+        }
+        th {
+            border-bottom:solid 2px #add9c0;
+        }
+        td {
+            text-align:center;
+        }
+    </style>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/paging.js"></script>
+    <link href="css/paging.css" rel="stylesheet" />
+    <script src="scripts/grid.js"></script>
+
+    <script src="scripts/search.js"></script>
+    <script>
+        var app = angular.module('myApp', ['fengGrid', 'brantwills.paging', 'searchGrid']);
+        app.controller('MainController', function ($scope) {
+            $scope.array = [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 1, b: 2 }, { a: 3, b: 4 }];
+            //$scope.array = [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 1, b: 2 }];
+            $scope.Alldata = {
+                data: [
+                    {
+                        title: "标题3",
+                        value: "a",
+                        width: '20px',
+                        height: '30px',
+                        class: 'classTH',
+                        sort: 'true',
+                        search:'true'//是否作为查询条件
+                    },
+                    {
+                        title: "标题2",
+                        value: "b",
+                        width: '20px',
+                        height: '30px',
+                        class: 'class1',
+                        sort: 'false',
+                        search: 'true'//是否作为查询条件
+                    },
+                    {
+                        title: "标题3",
+                        value: "a",
+                        width: '20px',
+                        height: '30px',
+                        class: 'classTH',
+                        sort: 'true',
+                        search: 'true'//是否作为查询条件
+                    },
+                    {
+                        title: "标题2",
+                        value: "b",
+                        width: '20px',
+                        height: '30px',
+                        class: 'class1',
+                        sort: 'false',
+                        search: 'true'//是否作为查询条件
+                    }
+                ]
+            }
+            $scope.se = function () {
+                $scope.array = [{ a: 1, b: 2 }, { a: 3, b: 4 }, { a: 1, b: 2 }];
+            }
+           
+        });
+    </script>
+</head>
+<body ng-app="myApp"  ng-controller='MainController'>
+    <parent  control="{{array}}">
+        <grid details="{{array}}" data="{{Alldata}}">
+        </grid>
+        <search></search>
+    </parent>
+    
+</body>
+</html>
